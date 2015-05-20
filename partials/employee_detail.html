@@ -1,0 +1,108 @@
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row" ng-controller="CutCtrl2" >
+				<div class="col-md-12">
+                <img src="images/backButton.jpg" onclick="history.back(-1)" style="float:left;width:100px;"/>
+                </div>
+  <div class="row featurette" style="text-align:center;">
+        <div class="col-md-5">
+          <h2 class="featurette-heading">{{emp.name}} <span class="text-muted">It'll blow your mind.</span></h2>
+          <p class="lead">{{emp.infotext}}</p>
+        </div>
+        <div class="col-md-7">
+          <img class="featurette-image img-responsive center-block"  ng-src="{{emp.imagepic}}" alt="Generic placeholder image">
+          <br>
+         <section ng-controller="PanelController as panel">
+          <ul class="nav nav-pills">
+                    <li ng-class="{active:panel.isSelected(1) }">
+                        <a href ng-click="panel.selectTab(1)">Description</a>
+                    </li>
+                    <li ng-class="{ active:panel.isSelected(2) }">
+                        <a href ng-click="panel.selectTab(2)">Specifications</a>
+                    </li>
+                    <li ng-class="{ active:panel.isSelected(3) }">
+                        <a href ng-click="panel.selectTab(3)">Reviews</a></li>
+                </ul>
+             
+             
+             
+             <div class="panel" ng-show="panel.isSelected(1)">
+                <h4>Description</h4>
+                 <blockquote> <p>{{emp.infotext}}</p></blockquote>
+                 <p><img ng-src="{{store.products[0].image}}" /></p>
+             </div>
+             
+             <div class="panel" ng-show="panel.isSelected(2)">
+               <h4>Speciications</h4> 
+                <blockquote> <p>{{emp.infotext}}</p></blockquote>
+              
+             </div>
+             
+             <div class="panel" ng-show="panel.isSelected(3)">
+                <h4>Write a reviews for {{emp.name}}</h4>
+               <blockquote> 
+                <table class="table table-striped" style="font-size:12px;">
+               <tr><th ><a href="" ng-click="sortField = 'star'; reverse= !reverse " >Stars</a></th><th  >Detail</th><th  >By</th><th  ><a href="" ng-click="sortField = 'date'; reverse= !reverse " >Date</a></th></tr>
+               <tr  ng-repeat="rev in emp.review | orderBy:sortField:reverse "><td style="text-align:left;">Star: {{rev.star}}</td><td style="text-align:left;">{{rev.body}}</td><td style="text-align:left;">{{rev.author}}</td><td style="text-align:left;">{{rev.date  | date:'M/d/yy h:mm a'}}</td></tr>
+             
+               </table>
+               <div class="borderMe">
+              
+             
+               <strong>Your Review</strong><br>
+               <span style="color:brown;">Stars:</span>  {{selectedValue}}<br>
+               <span style="color:brown;">Review:</span> {{review.piece}}<br>
+               <span style="color:brown;">Cited by - </span> {{review.author}}
+               
+               </div>
+               
+               </blockquote>
+           
+              <br>
+              <div class="container-flex" id="reviewFormBox">
+  <h2 class="textLeft" >Your Review</h2>
+ 
+    
+  <form name="reviewForm" class="form-horizontal" role="form" ng-submit="submitForm(selectedValue,review.piece,review.author)">
+<div class="form-group">
+      <label class="control-label col-sm-4" for="select">Your Rating:</label>
+      <div class="col-sm-2">
+        <select class="form-control" id="select" required ng-model="selectedValue" ng-options="value for value in staritems"><br/>
+       
+	</select>
+      </div>
+    </div>
+   
+  <div class="form-group">
+      <label class="control-label col-sm-4" for="name">Your Review:</label>
+      <div class="col-sm-8">          
+        <textarea class="form-control" required ng-model="review.piece"></textarea><br/>
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <label class="control-label col-sm-4" for="name">Your Name:</label>
+      <div class="col-sm-8">          
+        <input type="text" class="form-control" id="name" placeholder="Enter Name" required ng-model="review.author" >
+      </div>
+    </div>
+
+
+
+   
+         <div class="form-group">        
+          <div class="col-sm-offset-2 col-sm-10">
+            <button  type="submit" ng-disabled="$scope.$invalid" class="btn btn-default" >Submit Review</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+         
+             </div>
+                
+                </div>
+             </section>
+        </div>
+      </div>
+      </div><!-- /.row -->

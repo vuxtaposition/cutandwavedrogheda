@@ -1,0 +1,11 @@
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row" ng-controller="CutCtrl" >
+        <div class="col-lg-4" ng-repeat="employee in employees">
+          <a class="noStyleLink" href="#{{employee.name}}#employeeSection"><img class="img-circle" ng-src="{{employee.imagepic}}" alt="Marys image" width="140" height="140">
+          <h2>{{employee.name}}</h2></a>
+          <p>{{employee.infotext}}</p>
+          <p><a class="btn btn-default" href="#{{employee.name}}#employeeSection" role="button">View details &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+ 
+      </div><!-- /.row -->
